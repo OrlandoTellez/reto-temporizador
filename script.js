@@ -1,33 +1,67 @@
 const minutos = document.querySelector("#minutos")
 const segundos = document.querySelector("#segundos")
 const botonIniciar = document.querySelector("#iniciar")
+const botonPausar = document.querySelector("#pausar")
+const botonReiniciar = document.querySelector("#reiniciar")
 
-function temporizador(){
+let intervalo
+let tiempoTotal
+
+
+function iniciarTemporizador(){
     const inputMinutos = document.querySelector("#inputMinutos")
     const inputSegundos = document.querySelector("#inputSegundos")
 
-    let tiempoMinutos = parseInt(inputMinutos.value) || 0
-    let tiempoSegundos = parseInt(inputSegundos.value) || 0
+    if (!tiempoTotal) {
+        const tiempoMinutos = parseInt(inputMinutos.value) || 0
+        const tiempoSegundos = parseInt(inputSegundos.value) || 0
+        tiempoTotal = tiempoMinutos * 60 + tiempoSegundos
 
-    let tiempoTotal = tiempoMinutos * 60 + tiempoSegundos
+        if (tiempoTotal <= 0) {
+            alert("Por favor, introduce un tiempo válido.")
+            return
+        }
+    }
 
-    const intervalo = setInterval (() => {
+    intervalo = setInterval (() => {
         if(tiempoTotal <= 0){
             clearInterval(intervalo)
+            intervalo = null
             alert("El tiempo se acabo")
             return
         }
 
         tiempoTotal--
-        const minutosRestantes = Math.floor(tiempoTotal/60)
-        const segundosRestantes = tiempoTotal % 60
-    
-        minutos.textContent = String(minutosRestantes).padStart(2, "00")
-        segundos.textContent = String(segundosRestantes).padStart(2, "00")
+        actualizarTemporizador()
 
     }, 1000)
 
+    botonIniciar.disabled = true;
 }
 
-botonIniciar.addEventListener("click", temporizador);
+function pausarTemporizador(){
+    clearInterval(intervalo)
+    intervalo = null;
+    botonIniciar.disabled = false
+}
 
+function reiniciarTemporizador() {
+    clearInterval(intervalo)
+    intervalo = null
+    tiempoTotal = null
+
+    minutos.textContent = "00"
+    segundos.textContent = "00"
+    botonIniciar.disabled = false
+}
+function actualizarTemporizador(){
+    const minutosRestantes = Math.floor(tiempoTotal/60)
+    const segundosRestantes = tiempoTotal % 60
+
+    minutos.textContent = String(minutosRestantes).padStart(2, "00")
+    segundos.textContent = String(segundosRestantes).padStart(2, "00")
+}
+
+botonIniciar.addEventListener("click", iniciarTemporizador);
+botonPausar.addEventListener("click", pausarTemporizador)
+botonReiniciar.addEventListener("click", reiniciarTemporizador)
