@@ -37,12 +37,14 @@ function iniciarTemporizador(){
     }, 1000)
 
     botonIniciar.disabled = true;
+    botonIniciar.textContent = "Iniciar"
 }
 
 function pausarTemporizador(){
     clearInterval(intervalo)
     intervalo = null;
     botonIniciar.disabled = false
+    botonIniciar.textContent = "Reanudar"
 }
 
 function reiniciarTemporizador() {
@@ -53,6 +55,8 @@ function reiniciarTemporizador() {
     minutos.textContent = "00"
     segundos.textContent = "00"
     botonIniciar.disabled = false
+    botonIniciar.textContent = "Iniciar"
+
 }
 function actualizarTemporizador(){
     const minutosRestantes = Math.floor(tiempoTotal/60)
