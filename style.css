@@ -1,0 +1,43 @@
+button{
+    cursor: pointer;
+}
+
+article{
+    width: 100%;
+    height: 50vh;
+    
+}
+
+#contenedor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#contenedor div{
+    text-align: center;
+}
+
+.container-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 20px;
+}
+
+
+.container-text h1{
+    font-size: 1.8em;
+}
+
+#iniciar{
+    background-color: black;
+    color: aliceblue;
+    padding: 10px;
+    font-size: 1.3em;
+    border: none;
+    border-radius: 5px;
+}

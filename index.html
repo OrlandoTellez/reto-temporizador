@@ -4,8 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reto temporizador</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Retos temporizador</h1>
+    <article>
+        <div class="container-text">
+            <h1>Crea un temporizador</h1>
+            <div class="inputs">
+                <input id="minutos" placeholder="minutos" min="0" type="number">
+                <input id="segundos" placeholder="segundos" min="0" type="number">
+            </div>
+            <button id="iniciar">Iniciar Temporizador</button>
+        </div>
+        <div id="contenedor">
+            <div>
+                <p id="minutos">00</p>
+                <span>Minutos</span>
+            </div>
+            <div>
+                <p id="segundos">00</p>
+                <span>Segundos</span>
+            </div>
+        </div>
+    </article>
 </body>
 </html>
